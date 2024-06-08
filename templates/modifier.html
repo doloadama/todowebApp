@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Task</h1>
+        <form method="post" action="{{ url_for('modifier', id=tache['id']) }}">
+            <input type="text" name="titre" value="{{ tache['titre'] }}" required>
+            <textarea name="description" required>{{ tache['description'] }}</textarea>
+            <select name="statut" required>
+                <option value="En Cours" {% if tache['statut'] == 'En Cours' %}selected{% endif %}>Incomplete</option>
+                <option value="Terminé" {% if tache['statut'] == 'Terminé' %}selected{% endif %}>Complete</option>
+            </select>
+            <input type="submit" value="Update Task">
+        </form>
+    </div>
+</body>
+</html>

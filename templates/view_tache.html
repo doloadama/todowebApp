@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>View Tasks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view_task.css') }}">
+</head>
+<body>
+    <div id="container">
+        <h1>Liste des Tâches</h1>
+        <input type="number" id="rowCount" placeholder="Noombre de tâches à afficher">
+        <button id="loadButton">Charger</button>
+        <button id="addButton">Ajouter une tâche</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>userID</th>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id = 'tbody'>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
