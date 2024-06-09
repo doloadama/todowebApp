@@ -6,8 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     loadButton.onclick = function () {
-        let rowCount = parseInt(rowCountInput.value, 10) || 10; // Default to 10 if no value
-        tbody.innerHTML = ''; // Clear the table body
+         let rowCount = parseInt(rowCountInput.value, 10);
+         tbody.innerHTML = '' //Vider le tableau à chaque appuie sur charger
+
+            if (isNaN(rowCount) || rowCount < 1 || rowCount > 10) {
+                alert("Saisir un nombre compris entre 1 et 10");
+                return;
+            }
 
         fetch(`/api/tasks?limit=${rowCount}&offset=${offset}`)
             .then(response => response.json())
@@ -28,8 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error fetching tasks:', error));
     };
+    document.addEventListener('DOMContentLoaded', function () {
+});
     let ajouter = document.getElementById('addButton');
     ajouter.onclick = function () {
-        document.getElementById('addTaskForm').submit();
+        window.location.href = 'templates/ajouter.html'
     };
+
 });
+
+
+

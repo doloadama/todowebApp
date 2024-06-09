@@ -6,10 +6,13 @@
 </head>
 <body>
     <div id="container">
+        <form method="POST" action="{{ url_for('logout') }}" id="logoutForm">
+            <button type="submit">Déconnexion</button>
+        </form>
         <h1>Liste des Tâches</h1>
-        <input type="number" id="rowCount" placeholder="Noombre de tâches à afficher">
+        <input type="number" id="rowCount" placeholder="Nombre de tâches à afficher">
         <button id="loadButton">Charger</button>
-        <button id="addButton">Ajouter une tâche</button>
+        <a href="ajouter.html"><button id="addButton">Ajouter une tâche</button></a>
         <table>
             <thead>
                 <tr>

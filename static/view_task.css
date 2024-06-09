@@ -1,10 +1,11 @@
 /* Global Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #ffecd2, #fcb69f);
+
     margin: 0;
     padding: 0;
     display: flex;
+    background-image: url("To-Do-List.webp");
     justify-content: center;
     align-items: center;
     min-height: 100vh;
