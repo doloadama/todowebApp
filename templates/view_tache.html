@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
     <title>View Tasks</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='view_task.css') }}">
 </head>
 <body>
     <div id="container">
-        <form method="POST" action="{{ url_for('logout') }}" id="logoutForm">
-            <button type="submit">Déconnexion</button>
-        </form>
         <h1>Liste des Tâches</h1>
-        <input type="number" id="rowCount" placeholder="Nombre de tâches à afficher">
+        <input type="number" id="rowCount" placeholder="Number of rows">
         <button id="loadButton">Charger</button>
-        <a href="ajouter.html"><button id="addButton">Ajouter une tâche</button></a>
+        <button id="showAddTaskFormButton">Ajouter</button>
         <table>
             <thead>
                 <tr>
-                    <th>userID</th>
+                    <th>ID User</th>
                     <th>ID</th>
                     <th>Titre</th>
                     <th>Description</th>
@@ -24,10 +21,41 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id = 'tbody'>
-
+            <tbody id="tbody">
+                <!-- Tâches en cours -->
             </tbody>
         </table>
+
+        <h2>Tâches Archivées</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID User</th>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="archivedTbody">
+                <!-- Tâches archivées -->
+            </tbody>
+        </table>
+
+        <div id="addTaskFormContainer" style="display: none;">
+            <h2>Ajouter une Tâche</h2>
+            <form id="addTaskForm" method="post" action="{{ url_for('ajouter') }}">
+                <div class="msg">{{ msg }}</div>
+                <input type="text" name="titre" placeholder="Titre" required>
+                <textarea name="description" placeholder="Description" required></textarea>
+                <select name="statut" required>
+                    <option value="En cours">En cours</option>
+                    <option value="Terminé">Terminé</option>
+                    <option value="En attente">En attente</option>
+                </select>
+                <button type="button" id="addButton">Ajouter Tâche</button>
+            </form>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

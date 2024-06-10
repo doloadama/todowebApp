@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Task</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Edit Task</h1>
-        <form method="post" action="{{ url_for('ajouter')}}">
-            <input type="text" name="titre" value="{{ tache['titre'] }}" required>
-            <textarea name="description" required>{{ tache['description'] }}</textarea>
-            <select name="statut" required>
-                <option value="En Cours" {% if tache['statut'] == 'En Cours' %}selected{% endif %}>Incomplete</option>
-                <option value="Terminé" {% if tache['statut'] == 'Terminé' %}selected{% endif %}>Complete</option>
-            </select>
-            <input type="submit" value="Update Task">
+        <h1>Add Task</h1>
+        <form id="addTaskForm" method="post" action="{{ url_for('ajouter') }}">
+            <div class="msg">{{ msg }}</div>
+            <input type="text" name="titre" placeholder="Title" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <input type="date" name="date_creation" placeholder="Creation Date" required>
+            <input type="text" name="statut" placeholder="Status" required>
+            <button type="button" id="addButton" action="add">Add Task</button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
