@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadButton.onclick = function () {
         let rowCount = parseInt(rowCountInput.value, 10);
-        tbody.innerHTML = ''; // Vider le tableau à chaque appuie sur charger
+        tbody.innerHTML='';
 
         if (isNaN(rowCount) || rowCount < 1 || rowCount > 10) {
             alert("Saisir un nombre compris entre 1 et 10");
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.forEach(task => {
                     let row = document.createElement('tr');
                     row.innerHTML = `
+                        <td><input type="checkbox"></td>
                         <td>${task.id_user}</td>
                         <td>${task.id}</td>
                         <td>${task.titre}</td>
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       addButton.onclick = function () {
         document.getElementById('addTaskForm').submit();
+        confirm('tache créée avec succés!');
     };
 
     document.getElementById('addButton').onclick = function () {

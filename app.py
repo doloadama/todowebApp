@@ -41,6 +41,13 @@ def api_tasks():
     cursor.close()
     conn.close()
 
+    #Réccupérer les id des utilisateurs
+    existe_id = []
+    t= []
+    for t in tasks:
+        existe_id.append(t['id'])
+    print(existe_id)
+
     # Si le nombre de tâches récupérées est inférieur à la limite demandée
     if len(tasks) < limit:
         tache_add = limit - len(tasks)
@@ -49,13 +56,19 @@ def api_tasks():
         response = requests.get(f'https://jsonplaceholder.typicode.com/todos?_limit={tache_add}')
         if response.status_code == 200:
             tache_additionnelles = response.json()
+            #cursor.execute('INSERT INTO tache ${tache_additionneles[0]}')
             for tache in tache_additionnelles:
                 # Convertir les clé pour correspondre au schéma de la table
                 tache['titre'] = tache.pop('title', 'No title')
                 tache['description'] = fake.text()
                 tache['statut'] = 'complete' if tache['completed'] else 'incomplete'
-                tache['id_user'] = random.randint(1,50)
-                tache['id'] = random.randint(1, 100)
+
+                #Vérifier si l'id dans le
+                if tache['id'] in existe_id:
+                    tache['id'] = random.randint(1, 200)
+
+                if  tache['id_user'] in [t['user_id'] for t in tasks]:
+                    tache['id_user'] = random.randint(1, 50)
 
             tasks.extend(tache_additionnelles)
 
